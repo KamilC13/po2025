@@ -10,7 +10,6 @@ public class SkrzyniaBiegow extends Komponent{
         this.sprzeglo = sprzeglo;
         this.aktualnyBieg=akluanyBieg;
         this.iloscBiegow=iloscBiegow;;
-
     }
 
     public void ZwiekszBieg(){
@@ -34,5 +33,12 @@ public class SkrzyniaBiegow extends Komponent{
         {
             System.out.println("Jestes juz na 1");
         }
+    }
+    public int getAktualnyBieg() {
+        return aktualnyBieg;
+    }
+
+    public Sprzeglo getSprzeglo() {
+        return sprzeglo;
     }
 }

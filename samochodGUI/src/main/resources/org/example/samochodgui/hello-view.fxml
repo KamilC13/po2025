@@ -67,22 +67,22 @@
 
                             <children>
                                 <Label text="Model:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                                <TextField fx:id="modelField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                <TextField fx:id="ModelField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
                                 <Label text="Nr rejestracyjny:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                                <TextField fx:id="nrRejField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <TextField fx:id="NrRejField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
                                 <Label text="Waga:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-                                <TextField fx:id="wagaSamField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <TextField fx:id="WagaSamField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
                                 <Label text="Prędkość:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-                                <TextField fx:id="predkoscField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                <TextField fx:id="PredkoscField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
                                 <HBox spacing="5.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="4">
                                     <children>
-                                        <Button fx:id="wlaczButton" text="Włącz" />
-                                        <Button fx:id="wylaczButton" text="Wyłącz" />
-                                        <Button fx:id="inneButton" text="Button" />
+                                        <Button fx:id="WlaczButton" text="Włącz" />
+                                        <Button fx:id="WylaczButton" text="Wyłącz" />
+                                        <Button fx:id="InneButton" text="Button" />
                                     </children>
                                 </HBox>
                             </children>
@@ -112,21 +112,21 @@
 
                             <children>
                                 <Label text="Nazwa:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                                <TextField fx:id="skrzyniaNazwaField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                <TextField fx:id="SkrzyniaNazwaField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
                                 <Label text="Cena:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                                <TextField fx:id="skrzyniaCenaField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <TextField fx:id="SkrzyniaCenaField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
                                 <Label text="Waga:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-                                <TextField fx:id="skrzyniaWagaField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <TextField fx:id="SrzyniaWagaField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
                                 <Label text="Bieg:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-                                <TextField fx:id="biegField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                <TextField fx:id="BiegField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
                                 <HBox spacing="5.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="4">
                                     <children>
-                                        <Button fx:id="zwiekszBiegButton" text="Zwiększ bieg" />
-                                        <Button fx:id="zmniejszBiegButton" text="Zmniejsz bieg" />
+                                        <Button fx:id="ZwiekszBiegButton" text="Zwiększ bieg" />
+                                        <Button fx:id="ZmniejszBiegButton" text="Zmniejsz bieg" />
                                     </children>
                                 </HBox>
                             </children>
@@ -156,21 +156,21 @@
 
                             <children>
                                 <Label text="Nazwa:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                                <TextField fx:id="silnikNazwaField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                <TextField fx:id="SilnikNazwaField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
                                 <Label text="Cena:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                                <TextField fx:id="silnikCenaField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <TextField fx:id="SilnikCenaField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
                                 <Label text="Waga:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-                                <TextField fx:id="silnikWagaField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <TextField fx:id="SilnikWagaField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
                                 <Label text="Obroty:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-                                <TextField fx:id="obrotyField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                <TextField fx:id="ObrotyField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
                                 <HBox spacing="5.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="4">
                                     <children>
-                                        <Button fx:id="dodajGazuButton" text="Dodaj gazu" />
-                                        <Button fx:id="ujmijGazuButton" text="Ujmij gazu" />
+                                        <Button fx:id="DodajGazuButton" text="Dodaj gazu" />
+                                        <Button fx:id="UjmijGazuButton" text="Ujmij gazu" />
                                     </children>
                                 </HBox>
                             </children>
@@ -242,7 +242,7 @@
                 <ImageView fx:id="carImageView" fitHeight="71.0" fitWidth="85.0" layoutX="10.0" layoutY="33.0" preserveRatio="true">
                     <image>
                         <!-- obrazek z resources/images/images.png -->
-                        <Image url="@bae1d68eb74c36cc94e6eb2c97d0f512.jpg" />
+                        <Image url="@carImage.jpg" />
                     </image>
                 </ImageView>
 
