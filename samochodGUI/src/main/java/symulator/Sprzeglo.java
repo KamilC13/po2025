@@ -3,8 +3,8 @@ package symulator;
 public class Sprzeglo extends Komponent{
     public boolean StanSprzegla;
 
-    public Sprzeglo(String producent, String model, boolean StanSprzegla){
-        super(producent, model);
+    public Sprzeglo(String producent, String model, int cena, int waga, boolean StanSprzegla){
+        super(producent, model, cena, waga);
         this.StanSprzegla=StanSprzegla;
     }
 
@@ -19,5 +19,4 @@ public class Sprzeglo extends Komponent{
     public boolean isStanSprzegla() {
         return StanSprzegla;
     }
-
 }

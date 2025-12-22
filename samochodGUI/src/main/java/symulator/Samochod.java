@@ -3,30 +3,44 @@ package symulator;
 public class Samochod {
     Silnik silnik;
     SkrzyniaBiegow skrzynia;
-    Pozycja pozycja;;
+    Pozycja pozycja;
+    public String nrRjst;
+    public String modelAuta;
+    public int wagaAuta;
 
-    public Samochod(Silnik silnik, SkrzyniaBiegow skrzynia,  Pozycja pozycja) {
+    public Samochod(Silnik silnik, SkrzyniaBiegow skrzynia,  Pozycja pozycja, String nrRjst, String modelAuta, int wagaAuta) {
         this.silnik = silnik;
         this.skrzynia = skrzynia;
         this.pozycja = pozycja;
+        this.nrRjst = nrRjst;
+        this.modelAuta = modelAuta;
+        this.wagaAuta = wagaAuta;
     }
-    public void wlacz(){
-        silnik.uruchom();
+    public Silnik getSilnik() {
+        return silnik;
     }
-    public void wylacz(){
-        silnik.zatrzymaj();
-        skrzynia.aktualnyBieg = 0;
+    public Pozycja getPozycja() {
+        return pozycja;
     }
     public SkrzyniaBiegow getSkrzynia() {
         return skrzynia;
     }
-
-    public Silnik getSilnik() {
-        return silnik;
+    public void wlacz(){
+        silnik.uruchom();
+        System.out.println("Silnik wlaczony");
     }
-
-
-    public Pozycja getPozycja() {
-        return pozycja;
+    public void wylacz(){
+        silnik.zatrzymaj();
+        System.out.println("Silnik wylaczony");
     }
+    public String getModel(){
+        return modelAuta;
+    };
+    public String getNrRjst(){
+        return nrRjst;
+    };
+    public int getWagaAuta(){
+        return wagaAuta;
+    };
+
 }

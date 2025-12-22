@@ -10,9 +10,21 @@ public class Samochod {
         this.skrzynia = skrzynia;
         this.pozycja = pozycja;
     }
+    public Silnik getSilnik() {
+        return silnik;
+    }
+    public Pozycja getPozycja() {
+        return pozycja;
+    }
+    public SkrzyniaBiegow getSkrzynia() {
+        return skrzynia;
+    }
     public void wlacz(){
         silnik.uruchom();
+        System.out.println("Silnik wlaczony");
     }
     public void wylacz(){
+        silnik.zatrzymaj();
+        System.out.println("Silnik wylaczony");
     }
 }

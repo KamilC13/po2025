@@ -18,6 +18,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Slider?>
+
 
 <BorderPane prefHeight="632.0" prefWidth="912.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.samochodgui.HelloController">
 
@@ -80,8 +82,8 @@
 
                                 <HBox spacing="5.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="4">
                                     <children>
-                                        <Button fx:id="WlaczButton" text="Włącz" />
-                                        <Button fx:id="WylaczButton" text="Wyłącz" />
+                                        <Button fx:id="WlaczButton" text="Włącz" onAction="#onWlaczButton"/>
+                                        <Button fx:id="WylaczButton" text="Wyłącz" onAction="#onWylaczButton"/>
                                         <Button fx:id="InneButton" text="Button" />
                                     </children>
                                 </HBox>
@@ -125,8 +127,8 @@
 
                                 <HBox spacing="5.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="4">
                                     <children>
-                                        <Button fx:id="ZwiekszBiegButton" text="Zwiększ bieg" />
-                                        <Button fx:id="ZmniejszBiegButton" text="Zmniejsz bieg" />
+                                        <Button fx:id="ZwiekszBiegButton" text="Zwiększ bieg" onAction="#onZwiekszButton"/>
+                                        <Button fx:id="ZmniejszBiegButton" text="Zmniejsz bieg" onAction="#onZmniejszButton"/>
                                     </children>
                                 </HBox>
                             </children>
@@ -169,8 +171,9 @@
 
                                 <HBox spacing="5.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="4">
                                     <children>
-                                        <Button fx:id="DodajGazuButton" text="Dodaj gazu" />
-                                        <Button fx:id="UjmijGazuButton" text="Ujmij gazu" />
+                                        <Button fx:id="DodajGazuButton" text="Dodaj gazu" onAction="#onDodajButton"/>
+                                        <Button fx:id="UjmijGazuButton" text="Ujmij gazu" onAction="#onUjmijButton"/>
+                                        <Slider fx:id="GazSlider" min="1" max="500" value="10"/>
                                     </children>
                                 </HBox>
                             </children>
@@ -213,8 +216,8 @@
 
                                 <HBox spacing="5.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="4">
                                     <children>
-                                        <Button fx:id="nacisnijSprzegloButton" text="Naciśnij" />
-                                        <Button fx:id="zwolnijSprzegloButton" text="Zwolnij" />
+                                        <Button fx:id="nacisnijSprzegloButton" text="Naciśnij" onAction="#onNacisnijButton" />
+                                        <Button fx:id="zwolnijSprzegloButton" text="Zwolnij" onAction="#onZwolnijButton"/>
                                     </children>
                                 </HBox>
                             </children>
@@ -242,7 +245,7 @@
                 <ImageView fx:id="carImageView" fitHeight="71.0" fitWidth="85.0" layoutX="10.0" layoutY="33.0" preserveRatio="true">
                     <image>
                         <!-- obrazek z resources/images/images.png -->
-                        <Image url="@bae1d68eb74c36cc94e6eb2c97d0f512.jpg" />
+                        <Image url="@carImage.jpg" />
                     </image>
                 </ImageView>
 

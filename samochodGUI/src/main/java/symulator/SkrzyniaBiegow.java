@@ -5,8 +5,8 @@ public class SkrzyniaBiegow extends Komponent{
     public int iloscBiegow;
     Sprzeglo sprzeglo;
 
-    public SkrzyniaBiegow (String producent, Sprzeglo sprzeglo, String model, int akluanyBieg, int iloscBiegow) {
-        super(producent, model);
+    public SkrzyniaBiegow (String producent, Sprzeglo sprzeglo, int cena, int waga, String model, int akluanyBieg, int iloscBiegow) {
+        super(producent, model, cena, waga);
         this.sprzeglo = sprzeglo;
         this.aktualnyBieg=akluanyBieg;
         this.iloscBiegow=iloscBiegow;;
