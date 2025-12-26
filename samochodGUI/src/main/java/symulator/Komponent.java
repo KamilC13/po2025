@@ -13,6 +13,10 @@ public class Komponent {
         this.cena = cena;
         this.waga = waga;
     }
+    public Komponent() {
+        this("", "", 0, 0);
+    }
+
 
     public String getProducent() {
         return producent;
@@ -25,6 +29,15 @@ public class Komponent {
     }
     public int getWaga(){
         return waga;
+    }
+    public void setModel(){
+        this.model = model;
+    }
+    public void setCena(){
+         this.cena=cena;
+    }
+    public void setWaga(){
+        this.waga=waga;
     }
 
 }

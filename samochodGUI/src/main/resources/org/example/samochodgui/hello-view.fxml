@@ -41,7 +41,7 @@
                     <children>
                         <Label text="Samochód:" />
                         <ComboBox fx:id="samochodComboBox" prefWidth="220.0" />
-                        <Button fx:id="dodajSamochodButton" text="Dodaj nowy" />
+                        <Button fx:id="dodajSamochodButton" text="Dodaj nowy" onAction="#openAddCarWindow" />
                         <Button fx:id="usunSamochodButton" text="Usuń" />
                     </children>
                 </HBox>
@@ -84,7 +84,7 @@
                                     <children>
                                         <Button fx:id="WlaczButton" text="Włącz" onAction="#onWlaczButton"/>
                                         <Button fx:id="WylaczButton" text="Wyłącz" onAction="#onWylaczButton"/>
-                                        <Button fx:id="InneButton" text="Button" />
+                                        <Button fx:id="RefreshButton" text="Refresh" onAction="#onRefreshButton"/>
                                     </children>
                                 </HBox>
                             </children>

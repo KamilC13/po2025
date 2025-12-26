@@ -7,6 +7,13 @@ public class Sprzeglo extends Komponent{
         super(producent, model, cena, waga);
         this.StanSprzegla=StanSprzegla;
     }
+    public Sprzeglo() {
+        this.StanSprzegla = false;
+        this.cena = 0;
+        this.waga = 0;
+        this.producent = "";
+        this.model = "";
+    }
 
     public void wcisnij(){
         StanSprzegla = true; //sprzeglo jest wciskane

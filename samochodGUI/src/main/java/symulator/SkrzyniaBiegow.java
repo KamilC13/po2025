@@ -11,6 +11,15 @@ public class SkrzyniaBiegow extends Komponent{
         this.aktualnyBieg=akluanyBieg;
         this.iloscBiegow=iloscBiegow;;
     }
+    public SkrzyniaBiegow(){
+        this.sprzeglo = new Sprzeglo();
+        this.aktualnyBieg=0;
+        this.iloscBiegow=6;
+        this.cena = 0;
+        this.waga = 0;
+        this.producent = "";
+        this.model = "";
+    }
 
     public void ZwiekszBieg(){
         if(aktualnyBieg < iloscBiegow)

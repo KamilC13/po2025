@@ -8,6 +8,10 @@ public class Pozycja {
         this.x = x;
         this.y = y;
     }
+    public Pozycja(){
+        this.x = 0;
+        this.y = 0;
+    }
 
 
     public void AktuazlizujPozycje(double deltax, double deltay) {

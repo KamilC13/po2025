@@ -14,6 +14,16 @@ public class Silnik extends Komponent {
         this.predkosc=predkosc;
         this.maxpredkosc=maxpredkosc;
     }
+    public Silnik(){
+        this.maxObroty=6700;
+        this.obroty=0;
+        this.cena = 0;
+        this.waga = 0;
+        this.producent = "";
+        this.model = "";
+        this.predkosc=0;
+        this.maxpredkosc=0;
+    }
 
     public int ZmniejszV(int oIle) {
         if (predkosc - oIle >= 0) {
