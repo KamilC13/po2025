@@ -50,4 +50,7 @@ public class SkrzyniaBiegow extends Komponent{
     public Sprzeglo getSprzeglo() {
         return sprzeglo;
     }
+    public String toString(){
+        return model;
+    }
 }

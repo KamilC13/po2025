@@ -52,9 +52,13 @@ public class Silnik extends Komponent {
     }
     public void zatrzymaj(){
         obroty=0;
+        predkosc=0;
     }
     public int getObroty(){
         return obroty;
+    }
+    public String toString(){
+        return model;
     }
 
 }

@@ -86,7 +86,7 @@ public class HelloController {
         Image carImage = new Image(getClass().getResource("carImage.jpg").toExternalForm());
         System.out.println("Image width: " + carImage.getWidth() + ", height: " + carImage.getHeight());
 
-        /*WagaSamField.setOnAction(e -> {
+        WagaSamField.setOnAction(e -> {
             mojSamochod.setWagaAuta(Integer.parseInt(WagaSamField.getText()));
             refresh();
         });
@@ -97,7 +97,7 @@ public class HelloController {
         NrRejField.setOnAction(e-> {
             mojSamochod.setNrRjst(String.valueOf(NrRejField.getText()));
             refresh();
-        });*/
+        });
         dodajSamochodButton.setOnAction(event -> {
             try {
                 openAddCarWindow();
@@ -135,8 +135,8 @@ public class HelloController {
     }
     @FXML
     public void onUsunSamochod() {
-        samochodComboBox.getSelectionModel().getSelectedItem();
-        samochody.remove(mojSamochod);
+        Samochod doUsuniecia = samochodComboBox.getSelectionModel().getSelectedItem();
+        samochody.remove(doUsuniecia);
         mojSamochod = new Samochod();
         refresh();
     }
@@ -214,7 +214,6 @@ public class HelloController {
     }
 
     private void refresh() {
-        //samochodComboBox.getItems().setAll(samochody);
 
 
         ModelField.setText(String.valueOf(mojSamochod.getModel()));
@@ -235,8 +234,7 @@ public class HelloController {
         sprzegloNazwaField.setText(String.valueOf(mojSamochod.getSkrzynia().getSprzeglo().getModel()));
         sprzegloCenaField.setText(String.valueOf(mojSamochod.getSkrzynia().getSprzeglo().getCena()));
         sprzegloWagaField.setText(String.valueOf(mojSamochod.getSkrzynia().getSprzeglo().getWaga()));
-        sprzegloStanField.setText(
-                String.valueOf(mojSamochod.getSkrzynia().getSprzeglo().isStanSprzegla())
+        sprzegloStanField.setText(String.valueOf(mojSamochod.getSkrzynia().getSprzeglo().isStanSprzegla())
         );
     }
 

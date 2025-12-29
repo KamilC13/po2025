@@ -1,5 +1,7 @@
 package org.example.samochodgui;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -24,6 +26,10 @@ public class DodajSamochodController {
 
     private HelloController mainController;
 
+    @FXML private ComboBox<Silnik> silnikComboBox;
+    @FXML private ComboBox<SkrzyniaBiegow> skrzyniaComboBox;
+
+
     public void setMainController(HelloController mainController) {
         this.mainController = mainController;
     }
@@ -43,12 +49,13 @@ public class DodajSamochodController {
             System.out.println("Niepoprawne dane. Spróbuj ponownie.");
             return;
         }
-        Silnik silnik = new Silnik("AFS", "AB", 2000, 10, 10000, 0, speed, 400);
-        Sprzeglo sprzeglo = new Sprzeglo("ABC", "Sachs", 1000, 1000, true);
-        SkrzyniaBiegow skrzynia = new SkrzyniaBiegow("ABC", sprzeglo, 2300, 50000, "SD", 2, 5);
+
+        Silnik wybranysilnik = silnikComboBox.getValue();
+        Sprzeglo sprzeglo = new Sprzeglo();
+        SkrzyniaBiegow wybranaskrzynia = skrzyniaComboBox.getValue();
         Pozycja pozycja = new Pozycja(0, 0);
 
-        Samochod nowy = new Samochod(silnik, skrzynia, pozycja, registration, model, weight, speed);
+        Samochod nowy = new Samochod(wybranysilnik, wybranaskrzynia, pozycja, registration, model, weight, speed);
         if (mainController != null) {
             mainController.dodajSamochod(nowy);
         }
@@ -64,6 +71,20 @@ public class DodajSamochodController {
 
     @FXML
     public void initialize() {
+        Sprzeglo sprzeglo = new Sprzeglo("Standard", "pindel", 34, 34, false);
+
+        ObservableList<Silnik> silniki = FXCollections.observableArrayList(
+                new Silnik("as","342", 234, 24, 10000, 3500, 200, 300),
+                new Silnik("43","dqf", 23, 46, 9000, 1000, 160, 250)
+        );
+        ObservableList<SkrzyniaBiegow> skrzynia = FXCollections.observableArrayList(
+                new SkrzyniaBiegow("fdsa",sprzeglo, 43, 432, "wef", 2, 6 ),
+                new SkrzyniaBiegow("qf",sprzeglo, 43, 432, "bg", 1, 6 )
+        );
+
+        silnikComboBox.setItems(silniki);
+        skrzyniaComboBox.setItems(skrzynia);
+
         cancelButton.setOnAction(event -> {
             onCancelButton();
         });

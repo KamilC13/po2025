@@ -47,13 +47,13 @@
                     <HBox alignment="CENTER_LEFT" spacing="10.0">
                         <children>
                             <Label prefWidth="120.0" text="Silnik:" />
-                            <ComboBox fx:id="engineComboBox" prefWidth="200.0" promptText="Wybierz silnik" />
+                            <ComboBox fx:id="silnikComboBox" prefWidth="200.0" promptText="Wybierz silnik" />
                         </children>
                     </HBox>
                     <HBox alignment="CENTER_LEFT" spacing="10.0">
                         <children>
                             <Label prefWidth="120.0" text="Skrzynia Biegów:" />
-                            <ComboBox fx:id="gearboxComboBox" prefWidth="200.0" promptText="Wybierz skrzynię" />
+                            <ComboBox fx:id="skrzyniaComboBox" prefWidth="200.0" promptText="Wybierz skrzynię" />
                         </children>
                     </HBox>
                 </children>
