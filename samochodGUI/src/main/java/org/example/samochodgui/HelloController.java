@@ -16,13 +16,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+
 
 
 public class HelloController {
 
-    public static List<Samochod> samochody = new ArrayList<>();
+    //public static List<Samochod> samochody = new ArrayList<>();
 
     // Komponenty symulatora
     private Samochod mojSamochod;
@@ -37,8 +36,7 @@ public class HelloController {
     @FXML private Button NacisnijButton;
     @FXML private Button ZwolnijButton;
     @FXML private ComboBox<Samochod> samochodComboBox;
-    //private ObservableList<Samochod> samochody =
-          //  FXCollections.observableArrayList();
+    private ObservableList<Samochod> samochody = FXCollections.observableArrayList();
     @FXML private Button RefreshButton;
     @FXML private Slider GazSlider;
 
@@ -67,6 +65,8 @@ public class HelloController {
     @FXML private TextField sprzegloStanField;
 
     @FXML public Button dodajSamochodButton;
+    @FXML private Button usunSamochodButton;
+
 
     public void initialize() {
 
@@ -105,6 +105,15 @@ public class HelloController {
                 throw new RuntimeException(e);
             }
         });
+        samochodComboBox.setOnAction(e -> {
+            Samochod selected = samochodComboBox.getSelectionModel().getSelectedItem();
+            if (selected != null) {
+                mojSamochod = selected;
+                refresh();
+            }
+        });
+        samochodComboBox.setItems(samochody);
+
 
     }
     @FXML
@@ -115,21 +124,30 @@ public class HelloController {
         Stage stage = new Stage();
         Scene scene = new Scene(loader.load());
 
+        DodajSamochodController ctrl = loader.getController();
+        ctrl.setMainController(this);
+
         stage.setScene(scene);
         stage.setTitle("Dodaj nowy samochód");
         stage.showAndWait();
 
         refresh();
     }
+    @FXML
+    public void onUsunSamochod() {
+        samochodComboBox.getSelectionModel().getSelectedItem();
+        samochody.remove(mojSamochod);
+        mojSamochod = new Samochod();
+        refresh();
+    }
+
 
     @FXML
-    public static void addCarToList(String model, String registration, double weight, int speed) {
-        Silnik silnik = new Silnik("AFS", "AB", 2000, 10, 10000, 0, 100, speed);
-        Sprzeglo sprzeglo = new Sprzeglo("ABC", "Sachs", 1000, 1000, true);
-        SkrzyniaBiegow skrzynia = new SkrzyniaBiegow("ABC",  sprzeglo, 2300,  50000,"SD", 2, 5);
-        Pozycja pozycja = new Pozycja(0, 0);
-        Samochod mojSamochod = new Samochod(silnik, skrzynia, pozycja, registration, model, weight, speed);
-        samochody.add(mojSamochod);
+    public void dodajSamochod(Samochod nowy) {
+        samochody.add(nowy);
+        samochodComboBox.getSelectionModel().select(nowy);
+        mojSamochod = nowy;
+        refresh();
     }
 
 
@@ -196,7 +214,7 @@ public class HelloController {
     }
 
     private void refresh() {
-        samochodComboBox.getItems().setAll(samochody);
+        //samochodComboBox.getItems().setAll(samochody);
 
 
         ModelField.setText(String.valueOf(mojSamochod.getModel()));

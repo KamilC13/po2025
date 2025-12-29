@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import symulator.*;
 
 import java.io.IOException;
 
@@ -21,6 +22,13 @@ public class DodajSamochodController {
     public Button confirmButton;
     public Button cancelButton;
 
+    private HelloController mainController;
+
+    public void setMainController(HelloController mainController) {
+        this.mainController = mainController;
+    }
+
+
 
     @FXML
     private void onConfirmButton() {
@@ -35,7 +43,15 @@ public class DodajSamochodController {
             System.out.println("Niepoprawne dane. Spróbuj ponownie.");
             return;
         }
-        HelloController.addCarToList(model, registration, weight, speed);
+        Silnik silnik = new Silnik("AFS", "AB", 2000, 10, 10000, 0, speed, 400);
+        Sprzeglo sprzeglo = new Sprzeglo("ABC", "Sachs", 1000, 1000, true);
+        SkrzyniaBiegow skrzynia = new SkrzyniaBiegow("ABC", sprzeglo, 2300, 50000, "SD", 2, 5);
+        Pozycja pozycja = new Pozycja(0, 0);
+
+        Samochod nowy = new Samochod(silnik, skrzynia, pozycja, registration, model, weight, speed);
+        if (mainController != null) {
+            mainController.dodajSamochod(nowy);
+        }
         Stage stage = (Stage) confirmButton.getScene().getWindow();
         stage.close();
     }

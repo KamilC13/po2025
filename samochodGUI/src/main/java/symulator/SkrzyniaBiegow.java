@@ -9,7 +9,7 @@ public class SkrzyniaBiegow extends Komponent{
         super(producent, model, cena, waga);
         this.sprzeglo = sprzeglo;
         this.aktualnyBieg=akluanyBieg;
-        this.iloscBiegow=iloscBiegow;;
+        this.iloscBiegow=iloscBiegow;
     }
     public SkrzyniaBiegow(){
         this.sprzeglo = new Sprzeglo();
@@ -22,23 +22,23 @@ public class SkrzyniaBiegow extends Komponent{
     }
 
     public void ZwiekszBieg(){
-        if(aktualnyBieg < iloscBiegow)
+        if(aktualnyBieg < iloscBiegow && sprzeglo.isStanSprzegla())
         {
             aktualnyBieg++;
             System.out.println("Bieg zwiekszony na " + aktualnyBieg);
         }
-        if(aktualnyBieg == iloscBiegow)
+        if(aktualnyBieg == iloscBiegow && sprzeglo.isStanSprzegla())
         {
             System.out.println("Jestes juz na maksymalnym biegu");
         }
     }
     public void ZmiejszBieg(){
-        if(aktualnyBieg > 1)
+        if(aktualnyBieg > 1 && sprzeglo.isStanSprzegla())
         {
             aktualnyBieg--;
             System.out.println("Bieg zmniejszony na " + aktualnyBieg);
         }
-        if(aktualnyBieg == 1)
+        if(aktualnyBieg == 1 && sprzeglo.isStanSprzegla())
         {
             System.out.println("Jestes juz na 1");
         }
