@@ -1,6 +1,10 @@
 package symulator;
 
-public class Samochod {
+import java.net.http.WebSocket;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Samochod extends Thread {
     Silnik silnik;
     SkrzyniaBiegow skrzynia;
     Pozycja pozycja;
@@ -8,6 +12,11 @@ public class Samochod {
     public String modelAuta;
     public double wagaAuta;
     int maxspeed;
+
+    private Pozycja cel;
+    private Listener listener;
+    private List<Listener> listeners = new ArrayList<>();
+
 
     public Samochod(Silnik silnik, SkrzyniaBiegow skrzynia, Pozycja pozycja, String nrRjst, String modelAuta, double wagaAuta, int maxspeed) {
         this.silnik = silnik;
@@ -17,6 +26,8 @@ public class Samochod {
         this.modelAuta = modelAuta;
         this.wagaAuta = wagaAuta;
         this.maxspeed=maxspeed;
+
+        start();
     }
     public Samochod(){
         this.silnik=new Silnik();
@@ -25,7 +36,54 @@ public class Samochod {
         this.nrRjst="0";
         this.modelAuta="";
         this.wagaAuta=0;
+
+        start();
     }
+    public void setListener(Listener listener) {
+        this.listener = listener;
+    }
+    public void jedzDo(Pozycja cel) {
+        this.cel = cel;
+        System.out.println("Otrzymano nowy cel: " + cel.getX() + ", " + cel.getY());
+    }
+    @Override
+    public void run() {
+
+        double deltat = 0.01;
+
+        while (true) {
+            try {
+                if (cel != null) {
+                    double dx_diff = cel.getX() - pozycja.getX();
+                    double dy_diff = cel.getY() - pozycja.getY();
+
+                    double odleglosc = Math.sqrt(Math.pow(dx_diff, 2) + Math.pow(dy_diff, 2));
+
+                    if (odleglosc > 5) {
+                        double predkosc = silnik.getPredkosc();
+
+                        double dx = predkosc * deltat * (dx_diff / odleglosc);
+                        double dy = predkosc * deltat * (dy_diff / odleglosc);
+
+                        // aktualizacja pozycji
+                        pozycja.AktuazlizujPozycje(dx, dy);
+
+                        // Powiadomienie widoku o zmianie
+                        if (listener != null)
+                            listener.update();
+                    } else {
+                        cel = null; // Zatrzymanie po dotarciu
+                    }
+                }
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+
     public Silnik getSilnik() {
         return silnik;
     }

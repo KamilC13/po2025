@@ -238,13 +238,12 @@
 
     <!-- PRAWA STRONA: zielona mapa z autem -->
     <center>
-        <AnchorPane prefHeight="501.0" prefWidth="652.0" style="-fx-background-color: #90EE90;">
+        <AnchorPane fx:id="mapaPane" prefHeight="501.0" prefWidth="652.0" style="-fx-background-color: #90EE90;">
             <children>
                 <Label layoutX="10.0" layoutY="10.0" text="Mapa" />
 
                 <ImageView fx:id="carImageView" fitHeight="71.0" fitWidth="85.0" layoutX="10.0" layoutY="33.0" preserveRatio="true">
                     <image>
-                        <!-- obrazek z resources/images/images.png -->
                         <Image url="@carImage.jpg" />
                     </image>
                 </ImageView>

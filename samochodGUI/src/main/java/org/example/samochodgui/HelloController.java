@@ -1,5 +1,6 @@
 package org.example.samochodgui;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -9,6 +10,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import symulator.*;
 
 import javafx.fxml.FXMLLoader;
@@ -16,6 +18,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import javafx.application.Platform;
 
 
 
@@ -66,6 +69,8 @@ public class HelloController {
 
     @FXML public Button dodajSamochodButton;
     @FXML private Button usunSamochodButton;
+    @FXML private AnchorPane mapaPane;
+    @FXML private ImageView carImageView;
 
 
     public void initialize() {
@@ -108,13 +113,31 @@ public class HelloController {
         samochodComboBox.setOnAction(e -> {
             Samochod selected = samochodComboBox.getSelectionModel().getSelectedItem();
             if (selected != null) {
+                // odpinamy listener od starego auta
+                if (mojSamochod != null) {
+                    mojSamochod.setListener(null);
+                }
+
                 mojSamochod = selected;
-                refresh();
+
+                // podpinamy listener do nowego auta
+                mojSamochod.setListener(() ->
+                        Platform.runLater(this::refresh)
+                );
             }
         });
         samochodComboBox.setItems(samochody);
 
+        mojSamochod.setListener(() -> {
+            Platform.runLater(this::refresh);
+        });
 
+        mapaPane.setOnMouseClicked(event -> {
+            double x = event.getX();
+            double y = event.getY();
+            Pozycja nowaPozycja = new Pozycja(x, y);
+            mojSamochod.jedzDo(nowaPozycja);
+        });
     }
     @FXML
     public void openAddCarWindow() throws IOException {
@@ -234,10 +257,17 @@ public class HelloController {
         sprzegloNazwaField.setText(String.valueOf(mojSamochod.getSkrzynia().getSprzeglo().getModel()));
         sprzegloCenaField.setText(String.valueOf(mojSamochod.getSkrzynia().getSprzeglo().getCena()));
         sprzegloWagaField.setText(String.valueOf(mojSamochod.getSkrzynia().getSprzeglo().getWaga()));
-        sprzegloStanField.setText(String.valueOf(mojSamochod.getSkrzynia().getSprzeglo().isStanSprzegla())
-        );
-    }
+        sprzegloStanField.setText(String.valueOf(mojSamochod.getSkrzynia().getSprzeglo().isStanSprzegla()));
+
+        Platform.runLater(() -> {
+            // Używamy setTranslateX/Y zgodnie z instrukcją
+            if (mojSamochod.getPozycja() != null) {
+                carImageView.setTranslateX(mojSamochod.getPozycja().getX());
+                carImageView.setTranslateY(mojSamochod.getPozycja().getY());
+            }
+    });
 
 
 
+}
 }

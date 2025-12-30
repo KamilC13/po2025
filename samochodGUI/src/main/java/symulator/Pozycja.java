@@ -12,14 +12,14 @@ public class Pozycja {
         this.x = 0;
         this.y = 0;
     }
-
-
     public void AktuazlizujPozycje(double deltax, double deltay) {
         this.x=this.x+deltax;
-        this.y=this.y+deltax;
+        this.y=this.y+deltay;
     }
-    String getPozycja(double x, double y) {
-        return x + " " + y;
+    public double getX() {
+        return x;
     }
-
+    public double getY() {
+        return y;
+    }
 }
