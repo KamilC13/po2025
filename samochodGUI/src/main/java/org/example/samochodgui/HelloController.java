@@ -4,12 +4,9 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Slider;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import symulator.*;
 
@@ -22,7 +19,7 @@ import javafx.application.Platform;
 
 
 
-public class HelloController {
+public class HelloController implements Listener{
 
     //public static List<Samochod> samochody = new ArrayList<>();
 
@@ -41,7 +38,7 @@ public class HelloController {
     @FXML private ComboBox<Samochod> samochodComboBox;
     private ObservableList<Samochod> samochody = FXCollections.observableArrayList();
     @FXML private Button RefreshButton;
-    @FXML private Slider GazSlider;
+    @FXML private Slider ObrotySlider;
 
     // Samochód
     @FXML private TextField ModelField;
@@ -92,16 +89,17 @@ public class HelloController {
         System.out.println("Image width: " + carImage.getWidth() + ", height: " + carImage.getHeight());
 
         WagaSamField.setOnAction(e -> {
-            mojSamochod.setWagaAuta(Integer.parseInt(WagaSamField.getText()));
-            refresh();
-        });
-        ModelField.setOnAction(e -> {
-            mojSamochod.setModelAuta(String.valueOf(ModelField.getText()));
-            refresh();
+            try {
+                mojSamochod.setWagaAuta(Integer.parseInt(WagaSamField.getText()));
+                refresh();
+            } catch (NumberFormatException ex) {
+                pokazBlad("musi to byc liczba");
+            }
         });
         NrRejField.setOnAction(e-> {
-            mojSamochod.setNrRjst(String.valueOf(NrRejField.getText()));
-            refresh();
+                mojSamochod.setNrRjst(String.valueOf(NrRejField.getText()));
+                refresh();
+
         });
         dodajSamochodButton.setOnAction(event -> {
             try {
@@ -113,24 +111,26 @@ public class HelloController {
         samochodComboBox.setOnAction(e -> {
             Samochod selected = samochodComboBox.getSelectionModel().getSelectedItem();
             if (selected != null) {
+
                 // odpinamy listener od starego auta
                 if (mojSamochod != null) {
-                    mojSamochod.setListener(null);
+                    mojSamochod.removeListener(this);
                 }
 
                 mojSamochod = selected;
 
                 // podpinamy listener do nowego auta
-                mojSamochod.setListener(() ->
-                        Platform.runLater(this::refresh)
-                );
+                mojSamochod.addListener(this);
+
+                refresh();
             }
         });
+
         samochodComboBox.setItems(samochody);
 
-        mojSamochod.setListener(() -> {
-            Platform.runLater(this::refresh);
-        });
+        // podpinamy listener do auta startowego
+        mojSamochod.addListener(this);
+
 
         mapaPane.setOnMouseClicked(event -> {
             double x = event.getX();
@@ -139,6 +139,12 @@ public class HelloController {
             mojSamochod.jedzDo(nowaPozycja);
         });
     }
+
+    @Override
+    public void update() {
+        Platform.runLater(this::refresh);
+    }
+
     @FXML
     public void openAddCarWindow() throws IOException {
         FXMLLoader loader =
@@ -220,22 +226,28 @@ public class HelloController {
 
     @FXML
     protected void onDodajButton() {
-        int ile = (int) GazSlider.getValue();
-        mojSamochod.getSilnik().ZwiekszV(ile);
+        int ile = (int) ObrotySlider.getValue();
+        mojSamochod.getSilnik().ZwiekszObroty(ile);
         refresh();
     }
 
     @FXML
     protected void onUjmijButton() {
-        int ile = (int) GazSlider.getValue();
-        mojSamochod.getSilnik().ZmniejszV(ile);
+        int ile = (int) ObrotySlider.getValue();
+        mojSamochod.getSilnik().ZmniejszObroty(ile);
         refresh();
     }
     @FXML
     protected void onRefreshButton() {
         refresh();
     }
-
+    public void pokazBlad(String wiadomosc) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Błąd");
+        alert.setHeaderText(null);
+        alert.setContentText(wiadomosc);
+        alert.showAndWait();
+    }
     private void refresh() {
 
 
@@ -260,7 +272,7 @@ public class HelloController {
         sprzegloStanField.setText(String.valueOf(mojSamochod.getSkrzynia().getSprzeglo().isStanSprzegla()));
 
         Platform.runLater(() -> {
-            // Używamy setTranslateX/Y zgodnie z instrukcją
+            // Używamy setTranslateX/Y
             if (mojSamochod.getPozycja() != null) {
                 carImageView.setTranslateX(mojSamochod.getPozycja().getX());
                 carImageView.setTranslateY(mojSamochod.getPozycja().getY());

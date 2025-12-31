@@ -20,7 +20,7 @@ public class DodajSamochodController {
     @FXML
     private TextField weightTextField;
     @FXML
-    private TextField speedTextField;
+    private TextField maxspeedTextField;
     public Button confirmButton;
     public Button cancelButton;
 
@@ -41,10 +41,10 @@ public class DodajSamochodController {
         String model = modelTextField.getText();
         String registration = registrationTextField.getText();
         double weight;
-        int speed;
+        int maxspeed;
         try {
             weight = Double.parseDouble(weightTextField.getText());
-            speed = Integer.parseInt(speedTextField.getText());
+            maxspeed = Integer.parseInt(maxspeedTextField.getText());
         } catch (NumberFormatException e) {
             System.out.println("Niepoprawne dane. Spróbuj ponownie.");
             return;
@@ -55,7 +55,7 @@ public class DodajSamochodController {
         SkrzyniaBiegow wybranaskrzynia = skrzyniaComboBox.getValue();
         Pozycja pozycja = new Pozycja(0, 0);
 
-        Samochod nowy = new Samochod(wybranysilnik, wybranaskrzynia, pozycja, registration, model, weight, speed);
+        Samochod nowy = new Samochod(wybranysilnik, wybranaskrzynia, pozycja, registration, model, weight, maxspeed);
         if (mainController != null) {
             mainController.dodajSamochod(nowy);
         }

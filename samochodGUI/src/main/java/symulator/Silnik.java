@@ -25,25 +25,30 @@ public class Silnik extends Komponent {
         this.maxpredkosc=0;
     }
 
-    public int ZmniejszV(int oIle) {
-        if (predkosc - oIle >= 0) {
-            predkosc -= oIle;
+    public int ZmniejszObroty(int oIle) {
+        if (obroty - oIle >= 0) {
+            obroty -= oIle;
         } else {
             System.out.println("Bledna wartosc - bez zmiany ");
         }
-        return predkosc;
+        return obroty;
     }
 
 
-    public int ZwiekszV(int oIle) {
-        if (predkosc + oIle <= maxpredkosc) {
-            predkosc += oIle;
+    public int ZwiekszObroty(int oIle) {
+        if (obroty + oIle <= maxObroty) {
+            obroty += oIle;
         } else {
-            predkosc = maxpredkosc;
+            obroty = maxObroty;
         }
-        return predkosc;
+        return obroty;
     }
-
+    /*public int obliczPredkosc() {
+        if (this.obroty <= 0) {
+            return 0;
+        }
+        return this.obroty / 40;
+    }*/
     public int getPredkosc(){
         return predkosc;
     }

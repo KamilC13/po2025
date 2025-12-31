@@ -14,7 +14,6 @@ public class Samochod extends Thread {
     int maxspeed;
 
     private Pozycja cel;
-    private Listener listener;
     private List<Listener> listeners = new ArrayList<>();
 
 
@@ -39,8 +38,16 @@ public class Samochod extends Thread {
 
         start();
     }
-    public void setListener(Listener listener) {
-        this.listener = listener;
+    public void addListener(Listener listener) {
+        listeners.add(listener);
+    }
+    public void removeListener(Listener listener) {
+        listeners.remove(listener);
+    }
+    private void notifyListeners() {
+        for (Listener listener : listeners) {
+            listener.update();
+        }
     }
     public void jedzDo(Pozycja cel) {
         this.cel = cel;
@@ -68,9 +75,8 @@ public class Samochod extends Thread {
                         // aktualizacja pozycji
                         pozycja.AktuazlizujPozycje(dx, dy);
 
-                        // Powiadomienie widoku o zmianie
-                        if (listener != null)
-                            listener.update();
+                        notifyListeners();
+
                     } else {
                         cel = null; // Zatrzymanie po dotarciu
                     }

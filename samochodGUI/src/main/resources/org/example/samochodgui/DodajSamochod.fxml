@@ -34,11 +34,11 @@
                     <Label text="Model:" />
                     <Label text="Numer rejestracyjny:" GridPane.rowIndex="1" />
                     <Label text="Waga:" GridPane.rowIndex="2" />
-                    <Label text="Obecna prędkość:" GridPane.rowIndex="3" />
+                    <Label text="Max prędkość:" GridPane.rowIndex="3" />
                     <TextField fx:id="modelTextField" GridPane.columnIndex="1" />
                     <TextField fx:id="registrationTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                     <TextField fx:id="weightTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                    <TextField fx:id="speedTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                    <TextField fx:id="maxspeedTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                 </children>
             </GridPane>
 
