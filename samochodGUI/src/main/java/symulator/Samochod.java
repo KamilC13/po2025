@@ -13,6 +13,7 @@ public class Samochod extends Thread {
     public double wagaAuta;
     int maxspeed;
 
+
     private Pozycja cel;
     private List<Listener> listeners = new ArrayList<>();
 
@@ -67,8 +68,14 @@ public class Samochod extends Thread {
                     double odleglosc = Math.sqrt(Math.pow(dx_diff, 2) + Math.pow(dy_diff, 2));
 
                     if (odleglosc > 5) {
-                        double predkosc = silnik.getPredkosc();
+                        double predkosc = 0;
 
+                        if (silnik.getObroty() > 0 && skrzynia.getAktualnyBieg() > 0
+                                && !skrzynia.getSprzeglo().isStanSprzegla()) {
+                            predkosc = silnik.getObroty() * skrzynia.getAktualnyBieg() * 0.007;
+                        }
+
+                        silnik.setPredkosc(predkosc);
                         double dx = predkosc * deltat * (dx_diff / odleglosc);
                         double dy = predkosc * deltat * (dy_diff / odleglosc);
 
@@ -87,9 +94,9 @@ public class Samochod extends Thread {
             }
         }
     }
-
-
-
+    public boolean isWlaczony() {
+        return silnik.isUruchomiony();
+    }
     public Silnik getSilnik() {
         return silnik;
     }

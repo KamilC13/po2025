@@ -3,13 +3,15 @@ package symulator;
 public class SkrzyniaBiegow extends Komponent{
     public int aktualnyBieg;
     public int iloscBiegow;
+    public int aktualnePrzelozenie;
     Sprzeglo sprzeglo;
 
-    public SkrzyniaBiegow (String producent, Sprzeglo sprzeglo, int cena, int waga, String model, int akluanyBieg, int iloscBiegow) {
+    public SkrzyniaBiegow (String producent, Sprzeglo sprzeglo, int cena, int waga, String model, int akluanyBieg, int iloscBiegow, int aktualnePrzelozenie) {
         super(producent, model, cena, waga);
         this.sprzeglo = sprzeglo;
         this.aktualnyBieg=akluanyBieg;
         this.iloscBiegow=iloscBiegow;
+        this.aktualnePrzelozenie=aktualnePrzelozenie;
     }
     public SkrzyniaBiegow(){
         this.sprzeglo = new Sprzeglo();
@@ -45,6 +47,9 @@ public class SkrzyniaBiegow extends Komponent{
     }
     public int getAktualnyBieg() {
         return aktualnyBieg;
+    }
+    public int getAktualnePrzelozenie(){
+        return aktualnePrzelozenie;
     }
 
     public Sprzeglo getSprzeglo() {

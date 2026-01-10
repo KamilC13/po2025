@@ -26,4 +26,5 @@ public class Sprzeglo extends Komponent{
     public boolean isStanSprzegla() {
         return StanSprzegla;
     }
+
 }

@@ -4,10 +4,12 @@ public class Silnik extends Komponent {
 
     public int maxObroty;
     public int obroty;
-    public int predkosc;
+    public double predkosc;
     public int maxpredkosc;
+    private boolean uruchomiony = false;
 
-    public Silnik(String producent, String model, int cena, int waga, int maxObroty, int obroty, int predkosc, int maxpredkosc) {
+
+    public Silnik(String producent, String model, int cena, int waga, int maxObroty, int obroty, double predkosc, int maxpredkosc) {
         super(producent, model, cena, waga);
         this.maxObroty=maxObroty;
         this.obroty=obroty;
@@ -26,38 +28,41 @@ public class Silnik extends Komponent {
     }
 
     public int ZmniejszObroty(int oIle) {
-        if (obroty - oIle >= 0) {
-            obroty -= oIle;
-        } else {
-            System.out.println("Bledna wartosc - bez zmiany ");
+        if (!uruchomiony) {
+            return obroty;
         }
+        if (obroty - oIle >= 0) obroty -= oIle;
+        else obroty = 0;
         return obroty;
     }
-
 
     public int ZwiekszObroty(int oIle) {
-        if (obroty + oIle <= maxObroty) {
-            obroty += oIle;
-        } else {
-            obroty = maxObroty;
+        if (!uruchomiony) {
+            return obroty;
         }
+        if (obroty + oIle <= maxObroty) obroty += oIle;
+        else obroty = maxObroty;
         return obroty;
     }
-    /*public int obliczPredkosc() {
-        if (this.obroty <= 0) {
-            return 0;
-        }
-        return this.obroty / 40;
-    }*/
-    public int getPredkosc(){
+    public boolean isUruchomiony() {
+        return uruchomiony;
+    }
+    public double getPredkosc(){
         return predkosc;
     }
-    public void uruchom(){
-        obroty=1000;
+    public double getMaxPredkosc(){
+        return maxpredkosc;
     }
-    public void zatrzymaj(){
+    public boolean uruchom(){
+        uruchomiony = true;
+        obroty = 1000;
+        return true;
+    }
+    public boolean zatrzymaj(){
+        uruchomiony = false;
         obroty=0;
         predkosc=0;
+        return false;
     }
     public int getObroty(){
         return obroty;
@@ -66,5 +71,8 @@ public class Silnik extends Komponent {
         return model;
     }
 
+    public double setPredkosc(double predkosc) {
+        return this.predkosc=predkosc;
+    }
 }
 

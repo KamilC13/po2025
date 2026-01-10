@@ -157,7 +157,7 @@ public class HelloController implements Listener{
         ctrl.setMainController(this);
 
         stage.setScene(scene);
-        stage.setTitle("Dodaj nowy samochód");
+        stage.setTitle("Dodaj nowy samochod");
         stage.showAndWait();
 
         refresh();
@@ -178,7 +178,6 @@ public class HelloController implements Listener{
         mojSamochod = nowy;
         refresh();
     }
-
 
     @FXML
     protected void onWlaczButton() {
@@ -226,6 +225,10 @@ public class HelloController implements Listener{
 
     @FXML
     protected void onDodajButton() {
+        if (!mojSamochod.isWlaczony()) {
+            pokazBlad("Najpierw włącz samochód.");
+            return;
+        }
         int ile = (int) ObrotySlider.getValue();
         mojSamochod.getSilnik().ZwiekszObroty(ile);
         refresh();
@@ -233,6 +236,10 @@ public class HelloController implements Listener{
 
     @FXML
     protected void onUjmijButton() {
+        if (!mojSamochod.isWlaczony()) {
+            pokazBlad("Najpierw włącz samochód.");
+            return;
+        }
         int ile = (int) ObrotySlider.getValue();
         mojSamochod.getSilnik().ZmniejszObroty(ile);
         refresh();
@@ -249,7 +256,6 @@ public class HelloController implements Listener{
         alert.showAndWait();
     }
     private void refresh() {
-
 
         ModelField.setText(String.valueOf(mojSamochod.getModel()));
         NrRejField.setText(String.valueOf(mojSamochod.getNrRjst()));
@@ -270,6 +276,7 @@ public class HelloController implements Listener{
         sprzegloCenaField.setText(String.valueOf(mojSamochod.getSkrzynia().getSprzeglo().getCena()));
         sprzegloWagaField.setText(String.valueOf(mojSamochod.getSkrzynia().getSprzeglo().getWaga()));
         sprzegloStanField.setText(String.valueOf(mojSamochod.getSkrzynia().getSprzeglo().isStanSprzegla()));
+
 
         Platform.runLater(() -> {
             // Używamy setTranslateX/Y
