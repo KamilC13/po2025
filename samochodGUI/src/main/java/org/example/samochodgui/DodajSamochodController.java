@@ -40,6 +40,10 @@ public class DodajSamochodController {
     private void onConfirmButton() {
         String model = modelTextField.getText();
         String registration = registrationTextField.getText();
+        if (!registration.matches("\\d{5}")) {
+            System.out.println("Numer rejestracyjny musi mieć dokładnie 5 cyfr.");
+            return;
+        }
         double weight;
         int speed;
         try {
